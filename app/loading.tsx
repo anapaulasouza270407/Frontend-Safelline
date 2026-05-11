@@ -19,7 +19,7 @@ export default function LoadingScreen() {
   useEffect(() => {
 
     const timer = setTimeout(() => {
-      router.push("/");
+      router.push("/chat/select");
     }, 5000);
 
     return () => clearTimeout(timer);
