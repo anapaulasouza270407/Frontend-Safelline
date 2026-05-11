@@ -12,7 +12,7 @@ import {
 } from "react-native";
 
 import { useRouter, useLocalSearchParams } from "expo-router";
-import { ChatRoomStyles as styles } from "../../styles/ChatRoomStyles";
+import { ChatRoomStyles as styles } from "../../styles/screens/ChatRoomStyles";
 
 const categories = [
   { id: "Movies", name: "Filmes" },
@@ -24,6 +24,9 @@ export default function ChatRoom() {
   const categoryInfo = categories.find(
     (cat) => cat.id === useLocalSearchParams().category
   );
+
+  const [otherReason, setOtherReason] = useState("");
+  
 
   const router = useRouter();
 
@@ -126,10 +129,10 @@ export default function ChatRoom() {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity
-          style={styles.nextButton}
-          onPress={() => router.back()}
-        >
+      <TouchableOpacity
+    style={styles.nextButton}
+    onPress={() => router.push("/loading")}
+  >
           <Text style={styles.nextText}>Próximo</Text>
 
           <Text style={styles.arrow}>›</Text>
@@ -185,13 +188,16 @@ export default function ChatRoom() {
         animationType="fade"
       >
         <View style={styles.modalOverlay}>
-          <View style={styles.modalContainer}>
+        <View style={styles.modalContainer}>
 
-            {/* FOTO */}
-            <Image
-              source={require("../../assets/avatar1.png")}
-              style={styles.modalAvatar}
-            />
+  {/* TOPO LARANJA */}
+  <View style={styles.modalTop} />
+
+  {/* FOTO */}
+  <Image
+    source={require("../../assets/avatar1.png")}
+    style={styles.modalAvatar}
+  />
 
             {/* NOME */}
             <View style={styles.nameBox}>
@@ -253,15 +259,41 @@ export default function ChatRoom() {
                 Outro
               </Text>
             </TouchableOpacity>
+            {/* CAMPO OUTRO */}
+{selectedOption === "Outro" && (
+  <TextInput
+    style={styles.otherInput}
+    placeholder="Digite o motivo..."
+    placeholderTextColor="#B98A74"
+    value={otherReason}
+    onChangeText={setOtherReason}
+    multiline
+    maxLength={200}
+  />
+)}
 
             {/* DENUNCIAR */}
-            <TouchableOpacity
-              style={styles.reportButton}
-            >
-              <Text style={styles.reportButtonText}>
-                Denunciar
-              </Text>
-            </TouchableOpacity>
+<TouchableOpacity
+  style={styles.reportButton}
+  onPress={() => {
+
+    const finalReason =
+      selectedOption === "Outro"
+        ? otherReason
+        : selectedOption;
+
+    console.log("Denunciado:", finalReason);
+
+    setReportVisible(false);
+
+    setSelectedOption("");
+    setOtherReason("");
+  }}
+>
+  <Text style={styles.reportButtonText}>
+    Denunciar
+  </Text>
+</TouchableOpacity>
 
             {/* CANCELAR */}
             <TouchableOpacity
