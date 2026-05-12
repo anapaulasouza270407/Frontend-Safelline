@@ -4,7 +4,7 @@ export const loadingStyles = StyleSheet.create({
 
     container: {
         flex: 1,
-        backgroundColor: "#fefefe",
+        backgroundColor: "#fafafaff",
         justifyContent: "center",
         alignItems: "center",
     },

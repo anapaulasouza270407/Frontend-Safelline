@@ -193,10 +193,10 @@ export const chatSelectStyles = StyleSheet.create({
 
   saveButton: {
     backgroundColor: '#FF9500',
-    paddingVertical: 15,
+    paddingVertical: 14,
     borderRadius: 14,
     alignItems: 'center',
-    marginTop: 30,
+    marginTop: 15,
     marginHorizontal: 25,
   },
 
@@ -213,6 +213,8 @@ export const chatSelectStyles = StyleSheet.create({
     borderRadius: 14,
     alignItems: 'center',
     marginTop: 15,
+    marginHorizontal: 25,
+    
   },
 
   cancelText: {

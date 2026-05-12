@@ -34,6 +34,11 @@ const categories: Category[] = [
     name: 'Jogos',
     icon: require('../../assets/games.png'),
   },
+  {
+    id: 'Books',
+    name: 'Livros',
+    icon: require('../../assets/books.png'),
+  },
 ];
 
 export default function Select() {

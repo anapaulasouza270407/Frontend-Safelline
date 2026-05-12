@@ -1,6 +1,4 @@
-// app/loading.tsx
-
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   View,
   Image,
@@ -9,22 +7,29 @@ import {
 } from "react-native";
 
 import { useRouter } from "expo-router";
-
 import { loadingStyles as styles } from "../styles/screens/loadingStyles";
 
 export default function LoadingScreen() {
 
   const router = useRouter();
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
 
-    const timer = setTimeout(() => {
-      router.push("/chat/select");
+    timerRef.current = setTimeout(() => {
+      router.replace("/chat/room");
     }, 5000);
 
-    return () => clearTimeout(timer);
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
 
   }, []);
+
+  const handleCancel = () => {
+    if (timerRef.current) clearTimeout(timerRef.current); // cancela loading
+    router.replace("/chat/select"); // volta direto pro select
+  };
 
   return (
     <View style={styles.container}>
@@ -32,7 +37,7 @@ export default function LoadingScreen() {
       {/* SETA */}
       <TouchableOpacity
         style={styles.backButton}
-        onPress={() => router.back()}
+        onPress={handleCancel}
       >
         <Image
           source={require("../assets/setaloading.png")}
@@ -51,6 +56,7 @@ export default function LoadingScreen() {
       <Text style={styles.loadingText}>
         Conectando
       </Text>
+
       {/* BORDA TOPO */}
       <Image
         source={require("../assets/bordaC.png")}

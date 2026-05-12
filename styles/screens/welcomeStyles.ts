@@ -20,6 +20,7 @@ export const WelcomeStyles = StyleSheet.create({
     top: 0,
     width: '100%',
     zIndex: 0,
+    height: 400,
 },
 
 bottomWave: {
@@ -27,6 +28,7 @@ bottomWave: {
     bottom: 0,
     width: '100%',
     zIndex: 0,
+    height: 400,
 },
 
     logo: {

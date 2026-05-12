@@ -18,6 +18,7 @@ const categories = [
   { id: "Movies", name: "Filmes" },
   { id: "Games", name: "Jogos" },
   { id: "Series", name: "Séries" },
+  { id: "Books", name: "Livros" },
 ];
 
 export default function ChatRoom() {

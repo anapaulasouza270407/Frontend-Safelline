@@ -43,17 +43,17 @@ export default function welcome() {
 
                     <Button
                         title="Começar"
-                        onPress={() => router.push('/auth/login')}
+                        onPress={() => router.push('/auth/register')}
                         style={styles.primaryButton}
                     />
 
                     <Text style={styles.textInfo}>
-                        Não possui conta ainda? Clique no botão abaixo
+                        Já possui uma conta ? Clique no botão abaixo
                     </Text>
 
                     <Button
-                        title="Register"
-                        onPress={() => router.push('/auth/register')}
+                        title="Entrar"
+                        onPress={() => router.push('/auth/login')}
                         style={styles.secondaryButton}
                         variant="secondary"
                     />
