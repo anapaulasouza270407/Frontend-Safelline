@@ -347,4 +347,19 @@ cancelButtonText: {
   fontSize: 24,
   fontWeight: "800",
 },
+emptyContainer: {
+  flex: 1,
+  justifyContent: "center",
+  alignItems: "center",
+  paddingBottom: 120,
+},
+
+emptyText: {
+  color: "#D6A58A",
+
+  fontSize: 18,
+  fontWeight: "700",
+
+  opacity: 0.8,
+},
 });

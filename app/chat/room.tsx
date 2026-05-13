@@ -27,13 +27,12 @@ export default function ChatRoom() {
   );
 
   const [otherReason, setOtherReason] = useState("");
-  
 
   const router = useRouter();
 
   const flatListRef = useRef<FlatList>(null);
 
-  // CHAT FAKE
+  // CHAT
   const [messages, setMessages] = useState<any[]>([]);
 
   const [inputText, setInputText] = useState("");
@@ -51,16 +50,11 @@ export default function ChatRoom() {
     }
   }, [messages]);
 
+  // SEM MENSAGEM MOCADA
   const handleSendMessage = () => {
     if (inputText.trim() === "") return;
 
-    const newMessage = {
-      id: Date.now().toString(),
-      text: inputText,
-      isMine: true,
-    };
-
-    setMessages((prev) => [...prev, newMessage]);
+    console.log("Mensagem enviada:", inputText);
 
     setInputText("");
   };
@@ -130,10 +124,10 @@ export default function ChatRoom() {
           </TouchableOpacity>
         </View>
 
-      <TouchableOpacity
-    style={styles.nextButton}
-    onPress={() => router.push("/loading")}
-  >
+        <TouchableOpacity
+          style={styles.nextButton}
+          onPress={() => router.push("/loading")}
+        >
           <Text style={styles.nextText}>Próximo</Text>
 
           <Text style={styles.arrow}>›</Text>
@@ -141,14 +135,20 @@ export default function ChatRoom() {
       </View>
 
       {/* CHAT */}
-      <FlatList
-        ref={flatListRef}
-        data={messages}
-        keyExtractor={(item) => item.id}
-        renderItem={renderMessage}
-        contentContainerStyle={styles.chatContent}
-        showsVerticalScrollIndicator={false}
-      />
+      {messages.length > 0 ? (
+        <FlatList
+          ref={flatListRef}
+          data={messages}
+          keyExtractor={(item) => item.id}
+          renderItem={renderMessage}
+          contentContainerStyle={styles.chatContent}
+          showsVerticalScrollIndicator={false}
+        />
+      ) : (
+        <View style={styles.emptyContainer}>
+          
+        </View>
+      )}
 
       {/* BORDA */}
       <Image
@@ -189,16 +189,16 @@ export default function ChatRoom() {
         animationType="fade"
       >
         <View style={styles.modalOverlay}>
-        <View style={styles.modalContainer}>
+          <View style={styles.modalContainer}>
 
-  {/* TOPO LARANJA */}
-  <View style={styles.modalTop} />
+            {/* TOPO LARANJA */}
+            <View style={styles.modalTop} />
 
-  {/* FOTO */}
-  <Image
-    source={require("../../assets/avatar1.png")}
-    style={styles.modalAvatar}
-  />
+            {/* FOTO */}
+            <Image
+              source={require("../../assets/avatar1.png")}
+              style={styles.modalAvatar}
+            />
 
             {/* NOME */}
             <View style={styles.nameBox}>
@@ -260,41 +260,42 @@ export default function ChatRoom() {
                 Outro
               </Text>
             </TouchableOpacity>
+
             {/* CAMPO OUTRO */}
-{selectedOption === "Outro" && (
-  <TextInput
-    style={styles.otherInput}
-    placeholder="Digite o motivo..."
-    placeholderTextColor="#B98A74"
-    value={otherReason}
-    onChangeText={setOtherReason}
-    multiline
-    maxLength={200}
-  />
-)}
+            {selectedOption === "Outro" && (
+              <TextInput
+                style={styles.otherInput}
+                placeholder="Digite o motivo..."
+                placeholderTextColor="#B98A74"
+                value={otherReason}
+                onChangeText={setOtherReason}
+                multiline
+                maxLength={200}
+              />
+            )}
 
             {/* DENUNCIAR */}
-<TouchableOpacity
-  style={styles.reportButton}
-  onPress={() => {
+            <TouchableOpacity
+              style={styles.reportButton}
+              onPress={() => {
 
-    const finalReason =
-      selectedOption === "Outro"
-        ? otherReason
-        : selectedOption;
+                const finalReason =
+                  selectedOption === "Outro"
+                    ? otherReason
+                    : selectedOption;
 
-    console.log("Denunciado:", finalReason);
+                console.log("Denunciado:", finalReason);
 
-    setReportVisible(false);
+                setReportVisible(false);
 
-    setSelectedOption("");
-    setOtherReason("");
-  }}
->
-  <Text style={styles.reportButtonText}>
-    Denunciar
-  </Text>
-</TouchableOpacity>
+                setSelectedOption("");
+                setOtherReason("");
+              }}
+            >
+              <Text style={styles.reportButtonText}>
+                Denunciar
+              </Text>
+            </TouchableOpacity>
 
             {/* CANCELAR */}
             <TouchableOpacity
