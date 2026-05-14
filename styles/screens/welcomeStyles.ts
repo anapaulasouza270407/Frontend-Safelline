@@ -13,6 +13,7 @@ export const WelcomeStyles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         paddingHorizontal: 25,
+        paddingBottom: 100,
     },
 
     topWave: {
@@ -77,5 +78,6 @@ bottomWave: {
         color: "#888",
         textAlign: "center",
         marginVertical: 5,
+    
     },
 });

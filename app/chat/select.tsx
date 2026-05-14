@@ -54,8 +54,13 @@ export default function Select() {
   const [editField, setEditField] = useState<'name' | 'email' | 'password' | null>(null);
 
   const handleSelect = (id: string) => {
-    router.push(`/chat/room?category=${id}`);
-  };
+  router.push({
+    pathname: '/loading',
+    params: {
+      category: id,
+    },
+  });
+};
   const avatars = [
   require('../../assets/avatar1.png'),
   require('../../assets/avatar2.png'),

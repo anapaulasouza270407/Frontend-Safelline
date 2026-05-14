@@ -362,4 +362,9 @@ emptyText: {
 
   opacity: 0.8,
 },
+
+exitImage: {
+  width: 30,
+  height: 22,
+},
 });

@@ -57,12 +57,6 @@ export default function welcome() {
                         style={styles.secondaryButton}
                         variant="secondary"
                     />
-
-                    {/* rota mantida */}
-                    <Button
-                        title="Select"
-                        onPress={() => router.push('/chat/select')}
-                    />
                 </View>
 
             </View>

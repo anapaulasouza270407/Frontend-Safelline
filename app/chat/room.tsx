@@ -95,44 +95,65 @@ export default function ChatRoom() {
         style={styles.backgroundFox}
       />
 
-      {/* HEADER */}
-      <View style={styles.header}>
-        <View style={styles.headerLeft}>
-          <Image
-            source={require("../../assets/avatar1.png")}
-            style={styles.profileImage}
-          />
+   {/* HEADER */}
+<View style={styles.header}>
 
-          <View>
-            <Text style={styles.userName}>
-              Cebolinha
-            </Text>
+  <View style={styles.headerLeft}>
 
-            <Text style={styles.categoryText}>
-              {categoryInfo?.name || "Filmes"}
-            </Text>
-          </View>
+{/* BOTÃO SAIR */}
+<TouchableOpacity
+  style={styles.exitImage}
+  onPress={() => router.push("/chat/select")}
+>
 
-          {/* ALERTA */}
-          <TouchableOpacity
-            onPress={() => setReportVisible(true)}
-          >
-            <Image
-              source={require("../../assets/alert.png")}
-              style={styles.alertIcon}
-            />
-          </TouchableOpacity>
-        </View>
+  <Image
+    source={require("../../assets/setaE.png")}
+    style={styles.exitImage}
+    resizeMode="contain"
+  />
 
-        <TouchableOpacity
-          style={styles.nextButton}
-          onPress={() => router.push("/loading")}
-        >
-          <Text style={styles.nextText}>Próximo</Text>
+</TouchableOpacity>
 
-          <Text style={styles.arrow}>›</Text>
-        </TouchableOpacity>
-      </View>
+    {/* FOTO */}
+    <Image
+      source={require("../../assets/avatar1.png")}
+      style={styles.profileImage}
+    />
+
+    <View>
+      <Text style={styles.userName}>
+        Cebolinha
+      </Text>
+
+      <Text style={styles.categoryText}>
+        {categoryInfo?.name || "Filmes"}
+      </Text>
+    </View>
+
+    {/* ALERTA */}
+    <TouchableOpacity
+      onPress={() => setReportVisible(true)}
+    >
+      <Image
+        source={require("../../assets/alert.png")}
+        style={styles.alertIcon}
+      />
+    </TouchableOpacity>
+
+  </View>
+
+  <TouchableOpacity
+    style={styles.nextButton}
+    onPress={() => router.push("/loading")}
+  >
+    <Text style={styles.nextText}>
+      Próximo
+    </Text>
+
+    <Text style={styles.arrow}>›</Text>
+  </TouchableOpacity>
+
+</View>
 
       {/* CHAT */}
       {messages.length > 0 ? (

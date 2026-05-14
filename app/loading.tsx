@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+
 import {
   View,
   Image,
@@ -6,32 +7,60 @@ import {
   Text,
 } from "react-native";
 
-import { useRouter } from "expo-router";
+import {
+  useRouter,
+  useLocalSearchParams,
+} from "expo-router";
+
 import { loadingStyles as styles } from "../styles/screens/loadingStyles";
 
 export default function LoadingScreen() {
 
+  // ROUTER
   const router = useRouter();
+
+  // RECEBE A CATEGORIA
+  const { category } = useLocalSearchParams();
+
+  // TIMER
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
 
+    // LOADING
     timerRef.current = setTimeout(() => {
-      router.replace("/chat/room");
+
+      router.replace({
+        pathname: "/chat/room",
+
+        params: {
+          category,
+        },
+      });
+
     }, 5000);
 
+    // LIMPA TIMER
     return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
     };
 
   }, []);
 
+  // CANCELAR
   const handleCancel = () => {
-    if (timerRef.current) clearTimeout(timerRef.current); // cancela loading
-    router.replace("/chat/select"); // volta direto pro select
+
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+
+    router.replace("/chat/select");
   };
 
   return (
+
     <View style={styles.container}>
 
       {/* SETA */}
@@ -39,10 +68,12 @@ export default function LoadingScreen() {
         style={styles.backButton}
         onPress={handleCancel}
       >
+
         <Image
           source={require("../assets/setaloading.png")}
           style={styles.backImage}
         />
+
       </TouchableOpacity>
 
       {/* GIF */}
