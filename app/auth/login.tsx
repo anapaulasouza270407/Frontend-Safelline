@@ -18,7 +18,7 @@ export default function Login() {
         }
 
         try {
-            router.replace('/home');
+            router.replace('/chat/select');
         } catch (error) {
             Alert.alert('Erro', 'Ocorreu um erro ao tentar fazer login.');
         }

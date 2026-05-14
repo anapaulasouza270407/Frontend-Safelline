@@ -55,7 +55,7 @@ export default function Register() {
 
             setLoading(true);
 
-            router.replace('/home');
+            router.replace('/chat/select');
 
         } catch (error) {
 
